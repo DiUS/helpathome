@@ -9,6 +9,7 @@
     "npm": "1.4.3",
     "jade": ">= 0.0.1",
     "npm": "1.4.3",
-    "supervisor": "0.5.7"
+    "supervisor": "0.5.7",
+    "node-jsrender": "latest"
   }
 }

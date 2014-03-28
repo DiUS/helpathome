@@ -25,6 +25,11 @@ exports.index = function(req, res) {
     res.json(tasks.map(summarize_task));
   } else {
     res.render('progress.html');
+//     jsrender.loadFileSync('#progress', './views/progress.html');
+//     host_address = (require('os').hostname() + ':' + req.headers.host.split(':')[1]);
+//     console.log('Loaded ' + host_address);
+// //    res.render(jsrender.render['#progress']({ hostAddress: host_address }));
+//     jsrender.render['#progress']({ hostAddress: host_address });
   }
 };
 

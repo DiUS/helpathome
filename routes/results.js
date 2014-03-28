@@ -1,4 +1,4 @@
-var results = []
+var job = require('../jobs/default.js').get;
 
 exports.set = function(req, res) {
   var task_id = req.params.task_id;
@@ -9,12 +9,12 @@ exports.set = function(req, res) {
 
 exports.show = function(req, res) {
   var task_id = req.params.task_id;
-  var result = results[task_id] || {};
+  var result = job.results[task_id] || {};
 
   res.json(result);
 };
 
 function store(task_id, data) {
-  results[task_id] = data;
+  job.results[task_id] = data;
   return data;
 }

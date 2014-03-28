@@ -1,7 +1,8 @@
 var results = require('./results.js');
+var store = require('../store.js');
 
-var job = require('../jobs/primes.js').get;
-var tasks = generate_tasks(job);
+var job = store.job;
+var tasks = store.tasks;
 
 var next_task = 0;
 
@@ -37,31 +38,15 @@ exports.execute_task = function(req, res) {
   res.json(evaluate_task(tasks[req.params.task_id]));
 };
 
+exports.get = tasks
 
 // Helper Functions
-function generate_tasks(job) {
-  var id = 0;
-  var codeString = job.code.toString();
-  return job.inputs().map(function(input) {
-    var task = {
-      task_id: id,
-      task_url: "/tasks/" + id,
-      result_url: "/tasks/" + id + "/result",
-      task: codeString,
-      data: input,
-      status: 'pending'
-    };
-    id = id + 1;
-    return task;
-  })
-}
-
 function evaluate_task(task) {
   eval("var f = " + task.task);
   console.log(task);
   var result =  f(task.data);
-  return result;
-  // return results.store(task.task_id, result);
+  // return result;
+  return store.save_result(task.task_id, result);
 }
 
 function summarize_task(task) {

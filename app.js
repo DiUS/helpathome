@@ -5,8 +5,9 @@ var express = require('express');
 var routes = require('./routes');
 var tasks = require('./routes/tasks.js');
 var results = require('./routes/results.js');
-
 var app = express();
+
+
 
 // Configuration
 
@@ -40,7 +41,7 @@ app.get('/tasks/:id', tasks.show);
 //Results
 app.put('/tasks/:task_id/result', results.set);
 app.get('/tasks/:task_id/result', results.show);
-app.get('/execute', tasks.execute);
+app.get('/tasks/execute', tasks.execute);
 app.get('/tasks/:task_id/execute', tasks.execute_task);
 
 var server = app.listen(3000, function() {

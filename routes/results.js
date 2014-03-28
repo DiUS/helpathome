@@ -1,4 +1,4 @@
-var job = require('../jobs/default.js').get;
+var job = require('../jobs/primes.js').get;
 
 exports.set = function(req, res) {
   var task_id = req.params.task_id;

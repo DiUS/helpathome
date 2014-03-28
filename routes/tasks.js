@@ -1,4 +1,4 @@
-var job = require('../jobs/default.js').get;
+var job = require('../jobs/primes.js').get;
 var tasks = generate_tasks(job);
 
 var next_task = 0;
@@ -15,7 +15,7 @@ exports.show = function(req, res) {
 };
 
 exports.index = function(req, res) {
-  if (req.params.format == 'json') {
+  if (req.query.format == 'json') {
     res.json(tasks.map(summarize_task));
   } else {
     res.render('progress.html');
@@ -41,8 +41,7 @@ function generate_tasks(job) {
       task_url: "/tasks/" + id,
       result_url: "/tasks/" + id + "/result",
       task: codeString,
-      data: input,
-      status: "not started"
+      data: input
     };
     id = id + 1;
     return task;

@@ -1,4 +1,5 @@
 var job = require('../jobs/primes.js').get;
+job.results = []
 
 exports.set = function(req, res) {
   var task_id = req.params.task_id;
@@ -16,5 +17,8 @@ exports.show = function(req, res) {
 
 function store(task_id, data) {
   job.results[task_id] = data;
+  job.tasks[task_id].status = 'done'; 
   return data;
 }
+
+exports.store = store

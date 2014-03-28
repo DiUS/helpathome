@@ -38,6 +38,8 @@ app.get('/tasks/next', tasks.next);
 app.get('/tasks/:id', tasks.show);
 
 //Results
+app.put('/tasks/:task_id/result', results.set )
+app.get('/tasks/:task_id/result', results.show )
 
 app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

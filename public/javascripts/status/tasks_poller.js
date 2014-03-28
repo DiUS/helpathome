@@ -1,8 +1,9 @@
-      var tasksEndPoint = "http://localhost:3000/tasks"
+      var tasksEndPoint = 'http://' + $('#host-address').data()['hostAddress'] + '/tasks';
       var tid;
       var oldTaskIds = [];
 
       function jobStatusPoller() {
+        console.log('Server address: ' + tasksEndPoint);
         $.ajax({
           url: tasksEndPoint,
           data: { format: 'json' },

@@ -1,0 +1,17 @@
+
+input(type='button', value='Start Polling', onclick='startTimer()')
+input(type='button', value='Stop Polling', onclick='abortTimer()')
+.container
+  .job-map
+    h2 Job Map
+  .job-progress
+    h2 Job Progress
+  .task-progress
+    h2 Task Progress
+#host-address(data-host-address='#{hostAddress}')
+  script(src='/lib/d3.v3.min.js')
+  script(src='/lib/jquery-2.1.0.js')
+  script(src='/javascripts/status/tasks_poller.js')
+  script(src='/javascripts/status/job-map.js')
+  script(src='/javascripts/status/job-progress.js')
+  script(src='/javascripts/status/job-visualization-handlers.js')

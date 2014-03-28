@@ -24,7 +24,12 @@ exports.index = function(req, res) {
   if (req.query.format == 'json') {
     res.json(tasks.map(summarize_task));
   } else {
-    res.render('progress.html');
+    //res.render('progress.html');
+    addr_port = req.headers.host.split(':');
+    host_address = (addr_port[0] + ':' + addr_port[1]);
+    console.log(host_address);
+    res.render('progress', { 'hostAddress': host_address });
+//     var jsrender = require('node-jsrender');
 //     jsrender.loadFileSync('#progress', './views/progress.html');
 //     host_address = (require('os').hostname() + ':' + req.headers.host.split(':')[1]);
 //     console.log('Loaded ' + host_address);

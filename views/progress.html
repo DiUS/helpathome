@@ -7,28 +7,7 @@
   </head>
 
   <body>
-    <script src="/lib/jquery-2.1.0.js" />
-    <script src="/lib/d3.v3.min.js"></script>
-    <script src="/javascripts/status/tasks_poller.js"></script>
-
-    <script src="/javascripts/status/job-map.js"></script>
-    <script src="/javascripts/status/job-progress.js"></script>
-
-    <script id="job-visualization-handlers">
-      jobHandlers = {
-        dataUpdate: function(tasksStatus, addedTaskIds, deletedTaskIds) {
-          console.write('Woow, we got new data ' + tasksStatus +  ' -- ' + addedTaskIds + ' -- ' + deletedTaskIds);
-          //jobMap(jsonData);
-        },
-        taskAdded: function(tasksStatus, addedTaskIds) {
-          console.write('Woow, we got new data ' + tasksStatus +  ' -- ' + addedTaskIds);
-
-        },
-        taskDeleted: function(tasksStatus, deletedTaskIds) {
-          console.write('Woow, we got new data ' + tasksStatus +  ' -- ' + deletedTaskIds);
-        }
-      };
-    </script>
+    
 
 <!--
     <button type="button" onclick="jobMap()">Job Map</button>
@@ -53,6 +32,36 @@
       </div>
 
     </div>
+    
+    <script src="/lib/d3.v3.min.js"></script>
+    <script src="/lib/jquery-2.1.0.js"></script>
+   
+    <script src="/javascripts/status/tasks_poller.js"></script>
+
+    <script src="/javascripts/status/job-map.js"></script>
+    <script src="/javascripts/status/job-progress.js"></script>
+
+    <script id="job-visualization-handlers">
+      jobHandlers = {
+        dataUpdate: function(tasksStatus, addedTaskIds, deletedTaskIds) {
+          console.log('dataUpdate: ' + tasksStatus +  ' -- ' + addedTaskIds + ' -- ' + deletedTaskIds);
+          var data = {
+             "name": "Jobs",
+             "children": tasksStatus
+          };
+          console.log(tasksStatus);
+          jobMap(data);
+          jobProgress(data);
+        },
+        taskAdded: function(tasksStatus, addedTaskIds) {
+          console.log('taskAdded: ' + tasksStatus +  ' -- ' + addedTaskIds);
+
+        },
+        taskDeleted: function(tasksStatus, deletedTaskIds) {
+          console.log('taskDeleted: ' + tasksStatus +  ' -- ' + deletedTaskIds);
+        }
+      };
+    </script>
 
   </body>
 </html>

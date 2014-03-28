@@ -1,4 +1,4 @@
-var jobMap = function(){
+var jobMap = function(data){
 	console.log("jobMap()...");
 
   var m = [20, 120, 20, 120],
@@ -22,7 +22,7 @@ var jobMap = function(){
       .attr("transform", "translate(" + m[3] + "," + m[0] + ")");
 
   
-  d3.json("localhost:3000", function(error, data) {
+
     console.log(data);
     json = {
    "name": "Jobs",
@@ -61,7 +61,7 @@ var jobMap = function(){
     };
     console.log(json);
   
-    root = json;
+    root = data;
     root.x0 = h / 2;
     root.y0 = 0;
 
@@ -80,7 +80,7 @@ var jobMap = function(){
     //toggle(root.children[9].children[0]);
 
     update(root);
-  });
+
 
   function update(source) {
     var duration = d3.event && d3.event.altKey ? 5000 : 500;

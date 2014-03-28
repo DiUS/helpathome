@@ -1,4 +1,4 @@
-      var tasksEndPoint = "http://localhost:9292/tasks"
+      var tasksEndPoint = "http://localhost:3000/tasks"
       var tid;
       var oldTaskIds = [];
 

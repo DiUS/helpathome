@@ -1,7 +1,7 @@
 var jobProgress = function(data){
 	console.log("jobProgress()...");
 
-	var width = 960,
+	var width = 500,
 	    height = 500,
 	    twoPi = 2 * Math.PI,
 	    progress = 0,
@@ -13,6 +13,7 @@ var jobProgress = function(data){
 	    .innerRadius(180)
 	    .outerRadius(240);
 
+  d3.select("body").select(".job-progress").select("svg").remove();
 	var svg = d3.select("body").select(".job-progress").append("svg")
 	    .attr("width", width)
 	    .attr("height", height)
@@ -53,6 +54,11 @@ var jobProgress = function(data){
   for (var t=0; t<total; t++){
     if (data[t].status == "done") { done += 1; } 
   }
+  
+  console.log(data[0]);
+  console.log("Done: " + done);
+  
+  
 
   var progress = done/total;
 		        foreground.attr("d", arc.endAngle(twoPi * progress));

@@ -37,8 +37,8 @@
       };
 
       function startTimer() {
-        //tid = setInterval(jobStatusPoller, 2000);
-        jobStatusPoller();
+        tid = setInterval(jobStatusPoller, 2000);
+        //jobStatusPoller();
       };
 
       function abortTimer() { // to be called when you want to stop the timer

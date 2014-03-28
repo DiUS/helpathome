@@ -14,7 +14,8 @@ var jobMap = function(data){
 
   var diagonal = d3.svg.diagonal()
       .projection(function(d) { return [d.y, d.x]; });
-
+      
+  d3.select("body").select(".job-map").select("svg").remove();
   var vis = d3.select("body").select(".job-map").append("svg:svg")
       .attr("width", w + m[1] + m[3])
       .attr("height", h + m[0] + m[2])

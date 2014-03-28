@@ -13,3 +13,7 @@ pushResult = function(path, result, callback){
 		success: callback()
 	});
 }
+
+getResult = function(path, callback) {
+	return $.getJSON("/tasks?format=json", callback);
+}

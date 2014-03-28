@@ -30,6 +30,9 @@ app.configure('production', function(){
 
 // Routes
 app.get('/', routes.index);
+
+// Tasks
+app.get('/tasks', tasks.index);
 app.get('/tasks/next', tasks.next);
 app.get('/tasks/:id', tasks.show);
 

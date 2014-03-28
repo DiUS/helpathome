@@ -7,7 +7,7 @@ var jobMap = function(data){
       i = 0,
       root;
       
-      w /= 2; h /= 2;
+      w /= 2;
 
   var tree = d3.layout.tree()
       .size([h, w]);

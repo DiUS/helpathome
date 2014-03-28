@@ -28,6 +28,7 @@ executor = function(taskWrapper){
   result = taskFunction(inputSet)
 
   pushResult(taskWrapper["result_url"], result, startOver)
+  getResult('/tasks?format=json', displayResults)
 }
 
 function displayBrowserInformation() {
@@ -40,4 +41,8 @@ function displayBrowserInformation() {
     browserInfo += "<p>User-agent header: " + navigator.userAgent + "</p>";
     browserInfo += "<p>User-agent language: " + navigator.systemLanguage + "</p>";
     $('#browserInfo').html(browserInfo);
+}
+
+function displayResults() {
+  
 }

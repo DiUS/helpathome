@@ -43,5 +43,6 @@ app.get('/tasks/:task_id/result', results.show);
 app.get('/execute', tasks.execute);
 app.get('/tasks/:task_id/execute', tasks.execute_task);
 
-app.listen(3000);
-//console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+var server = app.listen(3000, function() {
+    console.log('Listening on port %d', server.address().port);
+});

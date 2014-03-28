@@ -15,10 +15,12 @@ var app = module.exports = express.createServer();
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
+  app.engine('html', require('ejs').renderFile);
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
+  
 });
 
 app.configure('development', function(){
@@ -42,4 +44,4 @@ app.put('/tasks/:task_id/result', results.set )
 app.get('/tasks/:task_id/result', results.show )
 
 app.listen(3000);
-console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+//console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

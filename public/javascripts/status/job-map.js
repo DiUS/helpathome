@@ -24,44 +24,41 @@ var jobMap = function(data){
   
 
     console.log(data);
+    var sample = [{
+           "name": "Task 1",
+           "children": [
+            {"name": "AgglomerativeCluster", "size": 3938},
+            {"name": "CommunityStructure", "size": 3812}
+           ]
+          },
+          {
+           "name": "Task 2",
+           "children": [
+            {"name": "BetweennessCentrality", "size": 3534},
+            {"name": "LinkDistance", "size": 5731},
+            {"name": "MaxFlowMinCut", "size": 7840}
+           ]
+          },
+          {
+           "name": "Task 3",
+           "children": [
+            {"name": "AspectRatioBanker", "size": 7074}
+           ]
+          }];
+    
     json = {
-   "name": "Jobs",
-   "children": [
-    {
-     "name": "Job 1",
-     "children": [
-      {
-       "name": "Task 1",
+       "name": "Jobs",
        "children": [
-        {"name": "AgglomerativeCluster", "size": 3938},
-        {"name": "CommunityStructure", "size": 3812},
-        {"name": "HierarchicalCluster", "size": 6714},
-        {"name": "MergeEdge", "size": 743}
+        {
+         "name": "Job 1",
+         "children": data
+        },
        ]
-      },
-      {
-       "name": "Task 2",
-       "children": [
-        {"name": "BetweennessCentrality", "size": 3534},
-        {"name": "LinkDistance", "size": 5731},
-        {"name": "MaxFlowMinCut", "size": 7840},
-        {"name": "ShortestPaths", "size": 5914},
-        {"name": "SpanningTree", "size": 3416}
-       ]
-      },
-      {
-       "name": "Task 3",
-       "children": [
-        {"name": "AspectRatioBanker", "size": 7074}
-       ]
-      }
-     ]
-    },
-     ]
-    };
-    console.log(json);
+        };
+    console.log(sample);
+    console.log(data);
   
-    root = data;
+    root = json;
     root.x0 = h / 2;
     root.y0 = 0;
 

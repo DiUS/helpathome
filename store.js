@@ -5,7 +5,9 @@ job.results = []
 
 function save_result(task_id, data) {
   job.results[task_id] = data;
-  tasks[task_id].status = 'done'; 
+  task = tasks[task_id]
+  task.status = 'done';
+  task.end_time = new Date().getTime(); 
   return data;
 }
 

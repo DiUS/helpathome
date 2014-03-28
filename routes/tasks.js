@@ -9,7 +9,8 @@ var next_task = 0;
 exports.next = function(req, res) {
   if (next_task < tasks.length) {
     task = tasks[next_task++];
-    task.status = 'running';
+    start_task(task);
+    task.owner_name = req.query.owner_name;
     res.json(task);
   }
   else
@@ -53,17 +54,27 @@ exports.get = tasks
 // Helper Functions
 function evaluate_task(task) {
   eval("var f = " + task.task);
-  console.log(task);
+  start_task(task)
   var result =  f(task.data);
   // return result;
   return store.save_result(task.task_id, result);
 }
 
 function summarize_task(task) {
+  var execution_time = null;
+  if(task.end_time)
+    execution_time = task.end_time - task.start_time
   return {
     task_id: task.task_id,
     task_url: task.task_url,
     result_url: task.result_url,
-    status: task.status
+    status: task.status,
+    owner_name: task.owner_name,
+    execution_time: execution_time
   }
+}
+
+function start_task(task) {
+  task.status = 'running';
+  task.start_time = new Date().getTime();
 }

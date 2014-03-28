@@ -1,7 +1,7 @@
 var job = {
   code: function(input) {
-    return input + 1;
-  },
+      return input + 1;
+    },
 
   inputs: function() {
     return [ 1, 2, 3, 4, 5 ];
@@ -33,8 +33,8 @@ function generate_tasks(job) {
   return job.inputs().map(function(input) {
     var task = {
       task_id: id,
-      task_url: "//tasks/" + id,
-      result_url: "//tasks/" + id + "/result",
+      task_url: "/tasks/" + id,
+      result_url: "/tasks/" + id + "/result",
       task: codeString,
       data: input,
       status: "not started"

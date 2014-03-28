@@ -1,12 +1,14 @@
-requestTaskFromServer = function (callback) {
-
-//    return {
-//        "taskId": 123,
-//        "taskFunction": "taskFunction = function(input){" +
-//            "console.log(input);" +
-//            "}",
-//        "inputSet": "an input set"
-//    }
-
+getTask = function (callback) {
     return $.getJSON("/tasks/next", callback);
+}
+
+pushResult = function(path, result){
+	console.log("path = "+ path)
+	$.ajax({
+		type: 'PUT',
+		contentType: "application/json",
+		url: path, 
+		data: JSON.stringify({ "result": result}),
+		dataType: 'json'
+	});
 }

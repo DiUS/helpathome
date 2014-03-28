@@ -1,11 +1,18 @@
 function start(){
-    task = requestTaskFromServer(executor);
+    task = getTask(executor);
+    // result = executeTask()
+    // submitResultToServer()
 }
 
 executor = function(taskWrapper){
-	task = taskWrapper['task']
+	task = "var taskFunction = "+taskWrapper['task']
 	inputSet = taskWrapper['data']
 
-    result = eval(task)(inputSet);
-    console.log("result = "+ result)
+	console.log(task)
+	console.log(inputSet)
+
+    eval(task)
+    result = taskFunction(inputSet)
+
+    pushResult(taskWrapper["result_url"], result)
 }

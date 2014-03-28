@@ -1,11 +1,13 @@
-var job = require('../jobs/primes.js').get;
-job.results = []
+var store = require('../store.js');
+
+var job = store.job;
+var tasks = store.tasks;
 
 exports.set = function(req, res) {
   var task_id = req.params.task_id;
   var data = req.body;
 
-  res.json(store(task_id, data));
+  res.json(store.save_result(task_id, data));
 };
 
 exports.show = function(req, res) {
@@ -14,11 +16,3 @@ exports.show = function(req, res) {
 
   res.json(result);
 };
-
-function store(task_id, data) {
-  job.results[task_id] = data;
-  job.tasks[task_id].status = 'done'; 
-  return data;
-}
-
-exports.store = store

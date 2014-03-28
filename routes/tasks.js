@@ -1,7 +1,8 @@
 var results = require('./results.js');
+var store = require('../store.js');
 
-var job = require('../jobs/primes.js').get;
-var tasks = generate_tasks(job);
+var job = store.job;
+var tasks = store.tasks;
 
 var next_task = 0;
 
@@ -23,7 +24,17 @@ exports.index = function(req, res) {
   if (req.query.format == 'json') {
     res.json(tasks.map(summarize_task));
   } else {
-    res.render('progress.html');
+    //res.render('progress.html');
+    addr_port = req.headers.host.split(':');
+    host_address = (addr_port[0] + ':' + addr_port[1]);
+    console.log(host_address);
+    res.render('progress', { 'hostAddress': host_address });
+//     var jsrender = require('node-jsrender');
+//     jsrender.loadFileSync('#progress', './views/progress.html');
+//     host_address = (require('os').hostname() + ':' + req.headers.host.split(':')[1]);
+//     console.log('Loaded ' + host_address);
+// //    res.render(jsrender.render['#progress']({ hostAddress: host_address }));
+//     jsrender.render['#progress']({ hostAddress: host_address });
   }
 };
 
@@ -37,31 +48,15 @@ exports.execute_task = function(req, res) {
   res.json(evaluate_task(tasks[req.params.task_id]));
 };
 
+exports.get = tasks
 
 // Helper Functions
-function generate_tasks(job) {
-  var id = 0;
-  var codeString = job.code.toString();
-  return job.inputs().map(function(input) {
-    var task = {
-      task_id: id,
-      task_url: "/tasks/" + id,
-      result_url: "/tasks/" + id + "/result",
-      task: codeString,
-      data: input,
-      status: 'pending'
-    };
-    id = id + 1;
-    return task;
-  })
-}
-
 function evaluate_task(task) {
   eval("var f = " + task.task);
   console.log(task);
   var result =  f(task.data);
-  return result;
-  // return results.store(task.task_id, result);
+  // return result;
+  return store.save_result(task.task_id, result);
 }
 
 function summarize_task(task) {

@@ -24,11 +24,11 @@ app.configure(function(){
 });
 
 app.configure('development', function(){
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
+  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 
 app.configure('production', function(){
-  app.use(express.errorHandler()); 
+  app.use(express.errorHandler());
 });
 
 // Routes
@@ -40,8 +40,10 @@ app.get('/tasks/next', tasks.next);
 app.get('/tasks/:id', tasks.show);
 
 //Results
-app.put('/tasks/:task_id/result', results.set )
-app.get('/tasks/:task_id/result', results.show )
+app.put('/tasks/:task_id/result', results.set);
+app.get('/tasks/:task_id/result', results.show);
+app.get('/execute', tasks.execute);
+app.get('/tasks/:task_id/execute', tasks.execute_task);
 
 app.listen(3000);
 //console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

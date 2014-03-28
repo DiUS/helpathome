@@ -1,14 +1,12 @@
-
 /**
  * Module dependencies.
  */
-
 var express = require('express');
 var routes = require('./routes');
 var tasks = require('./routes/tasks.js');
 var results = require('./routes/results.js');
 
-var app = module.exports = express.createServer();
+var app = express();
 
 // Configuration
 

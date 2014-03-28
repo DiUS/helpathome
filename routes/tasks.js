@@ -23,7 +23,11 @@ exports.show = function(req, res) {
 };
 
 exports.index = function(req, res) {
-  res.json(tasks);
+  if (req.params.format == 'json') {
+    res.json(tasks);
+  } else {
+    res.render('progress.html');
+  }
 };
 
 

@@ -8,7 +8,6 @@ var results = require('./routes/results.js');
 var app = express();
 
 
-
 // Configuration
 
 app.configure(function(){

@@ -1,5 +1,4 @@
-	var taskCount = 0;
-
+var taskCount = 0;
 
 function start(){
     task = getTask(executor);
